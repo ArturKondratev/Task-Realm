@@ -1,13 +1,7 @@
 # MyHome
 
-### Для запуска необходимо добавить в проект Realm
+## Project Setup
 
-### Swift Package Manager
-- **File > Swift Packages > Add Package Dependency**
-- **Add https://github.com/realm/realm-swift.git**
-
-
-
-
-
-
+- Install [CocoaPods](https://guides.cocoapods.org/using/getting-started.html)
+- Open project directory in terminal and run `pod install` command
+- Open Workspace of project `*.xcworkspace`
