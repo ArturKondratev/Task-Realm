@@ -1,0 +1,503 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 55;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		48401D4F2880507C009790EC /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = 48401D4E2880507C009790EC /* Podfile */; };
+		48401E5A287753A600262787 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48401E59287753A600262787 /* AppDelegate.swift */; };
+		48401E5C287753A600262787 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48401E5B287753A600262787 /* SceneDelegate.swift */; };
+		48401E63287753A700262787 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 48401E62287753A700262787 /* Assets.xcassets */; };
+		48401E66287753A700262787 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 48401E64287753A700262787 /* LaunchScreen.storyboard */; };
+		48401E74287763B300262787 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48401E73287763B300262787 /* NetworkService.swift */; };
+		48401E762877686900262787 /* CamerasModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48401E752877686900262787 /* CamerasModel.swift */; };
+		48401E792877712600262787 /* DoorModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48401E782877712600262787 /* DoorModel.swift */; };
+		48897A2B2885469800B2F863 /* Factory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48897A2A2885469800B2F863 /* Factory.swift */; };
+		48897A2E28854AAF00B2F863 /* CameraSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48897A2D28854AAF00B2F863 /* CameraSection.swift */; };
+		48C177D42878546C001CA0EB /* CamerasRealm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48C177D32878546C001CA0EB /* CamerasRealm.swift */; };
+		48C177D628785490001CA0EB /* DoorsRealm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48C177D528785490001CA0EB /* DoorsRealm.swift */; };
+		48C177DF28785AC2001CA0EB /* RealmCashService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48C177DE28785AC2001CA0EB /* RealmCashService.swift */; };
+		48FA3289287AB92600260956 /* ExtensionUIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48FA3288287AB92600260956 /* ExtensionUIImageView.swift */; };
+		48FA328B287AB96D00260956 /* ExtensionUIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48FA328A287AB96D00260956 /* ExtensionUIColor.swift */; };
+		48FA328F287AB9FF00260956 /* CamerasCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48FA328E287AB9FF00260956 /* CamerasCell.swift */; };
+		48FA3291287ABA5800260956 /* MyHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48FA3290287ABA5800260956 /* MyHomeViewController.swift */; };
+		48FA3293287AF5E200260956 /* DoorsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48FA3292287AF5E200260956 /* DoorsCell.swift */; };
+		48FA3295287B0C2300260956 /* LockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48FA3294287B0C2200260956 /* LockView.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		48401D4E2880507C009790EC /* Podfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		48401E56287753A600262787 /* Rubetek.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Rubetek.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		48401E59287753A600262787 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		48401E5B287753A600262787 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		48401E62287753A700262787 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		48401E65287753A700262787 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		48401E67287753A700262787 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		48401E73287763B300262787 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
+		48401E752877686900262787 /* CamerasModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CamerasModel.swift; sourceTree = "<group>"; };
+		48401E782877712600262787 /* DoorModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoorModel.swift; sourceTree = "<group>"; };
+		48897A2A2885469800B2F863 /* Factory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Factory.swift; sourceTree = "<group>"; };
+		48897A2D28854AAF00B2F863 /* CameraSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraSection.swift; sourceTree = "<group>"; };
+		48C177D32878546C001CA0EB /* CamerasRealm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CamerasRealm.swift; sourceTree = "<group>"; };
+		48C177D528785490001CA0EB /* DoorsRealm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoorsRealm.swift; sourceTree = "<group>"; };
+		48C177DE28785AC2001CA0EB /* RealmCashService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmCashService.swift; sourceTree = "<group>"; };
+		48FA3288287AB92600260956 /* ExtensionUIImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionUIImageView.swift; sourceTree = "<group>"; };
+		48FA328A287AB96D00260956 /* ExtensionUIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionUIColor.swift; sourceTree = "<group>"; };
+		48FA328E287AB9FF00260956 /* CamerasCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CamerasCell.swift; sourceTree = "<group>"; };
+		48FA3290287ABA5800260956 /* MyHomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyHomeViewController.swift; sourceTree = "<group>"; };
+		48FA3292287AF5E200260956 /* DoorsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoorsCell.swift; sourceTree = "<group>"; };
+		48FA3294287B0C2200260956 /* LockView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LockView.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		48401E53287753A600262787 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		13218B386AA6B18D9FD23D08 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		48401E4D287753A600262787 = {
+			isa = PBXGroup;
+			children = (
+				48401D4E2880507C009790EC /* Podfile */,
+				48401E58287753A600262787 /* Rubetek */,
+				48401E57287753A600262787 /* Products */,
+				13218B386AA6B18D9FD23D08 /* Pods */,
+			);
+			sourceTree = "<group>";
+		};
+		48401E57287753A600262787 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				48401E56287753A600262787 /* Rubetek.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		48401E58287753A600262787 /* Rubetek */ = {
+			isa = PBXGroup;
+			children = (
+				48401E6F2877624C00262787 /* AppFiles */,
+				48C177D228785435001CA0EB /* RealmBase */,
+				48401E712877630900262787 /* Model */,
+				48C177CD287846BB001CA0EB /* View */,
+				48401E70287762F800262787 /* Controller */,
+			);
+			path = Rubetek;
+			sourceTree = "<group>";
+		};
+		48401E6F2877624C00262787 /* AppFiles */ = {
+			isa = PBXGroup;
+			children = (
+				48401E5B287753A600262787 /* SceneDelegate.swift */,
+				48401E59287753A600262787 /* AppDelegate.swift */,
+				48401E64287753A700262787 /* LaunchScreen.storyboard */,
+				48401E62287753A700262787 /* Assets.xcassets */,
+				48401E67287753A700262787 /* Info.plist */,
+			);
+			path = AppFiles;
+			sourceTree = "<group>";
+		};
+		48401E70287762F800262787 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				48FA3290287ABA5800260956 /* MyHomeViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		48401E712877630900262787 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				48897A2C28854A8900B2F863 /* Factory */,
+				48401E7A2877747F00262787 /* Extension */,
+				48401E722877631E00262787 /* NetworkManager */,
+				48401E77287770FF00262787 /* Models */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		48401E722877631E00262787 /* NetworkManager */ = {
+			isa = PBXGroup;
+			children = (
+				48401E73287763B300262787 /* NetworkService.swift */,
+			);
+			path = NetworkManager;
+			sourceTree = "<group>";
+		};
+		48401E77287770FF00262787 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				48401E752877686900262787 /* CamerasModel.swift */,
+				48401E782877712600262787 /* DoorModel.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		48401E7A2877747F00262787 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				48FA3288287AB92600260956 /* ExtensionUIImageView.swift */,
+				48FA328A287AB96D00260956 /* ExtensionUIColor.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
+		48897A2C28854A8900B2F863 /* Factory */ = {
+			isa = PBXGroup;
+			children = (
+				48897A2A2885469800B2F863 /* Factory.swift */,
+				48897A2D28854AAF00B2F863 /* CameraSection.swift */,
+			);
+			path = Factory;
+			sourceTree = "<group>";
+		};
+		48C177CD287846BB001CA0EB /* View */ = {
+			isa = PBXGroup;
+			children = (
+				48FA328E287AB9FF00260956 /* CamerasCell.swift */,
+				48FA3292287AF5E200260956 /* DoorsCell.swift */,
+				48FA3294287B0C2200260956 /* LockView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		48C177D228785435001CA0EB /* RealmBase */ = {
+			isa = PBXGroup;
+			children = (
+				48C177DE28785AC2001CA0EB /* RealmCashService.swift */,
+				48C177D32878546C001CA0EB /* CamerasRealm.swift */,
+				48C177D528785490001CA0EB /* DoorsRealm.swift */,
+			);
+			path = RealmBase;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		48401E55287753A600262787 /* Rubetek */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 48401E6A287753A700262787 /* Build configuration list for PBXNativeTarget "Rubetek" */;
+			buildPhases = (
+				48401E52287753A600262787 /* Sources */,
+				48401E53287753A600262787 /* Frameworks */,
+				48401E54287753A600262787 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Rubetek;
+			productName = Rubetek;
+			productReference = 48401E56287753A600262787 /* Rubetek.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		48401E4E287753A600262787 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1320;
+				LastUpgradeCheck = 1320;
+				TargetAttributes = {
+					48401E55287753A600262787 = {
+						CreatedOnToolsVersion = 13.2.1;
+					};
+				};
+			};
+			buildConfigurationList = 48401E51287753A600262787 /* Build configuration list for PBXProject "Rubetek" */;
+			compatibilityVersion = "Xcode 13.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 48401E4D287753A600262787;
+			packageReferences = (
+				48C177D828785720001CA0EB /* XCRemoteSwiftPackageReference "realm-swift.git" */,
+			);
+			productRefGroup = 48401E57287753A600262787 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				48401E55287753A600262787 /* Rubetek */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		48401E54287753A600262787 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				48401D4F2880507C009790EC /* Podfile in Resources */,
+				48401E66287753A700262787 /* LaunchScreen.storyboard in Resources */,
+				48401E63287753A700262787 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		48401E52287753A600262787 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				48FA3293287AF5E200260956 /* DoorsCell.swift in Sources */,
+				48FA3295287B0C2300260956 /* LockView.swift in Sources */,
+				48401E762877686900262787 /* CamerasModel.swift in Sources */,
+				48401E792877712600262787 /* DoorModel.swift in Sources */,
+				48401E74287763B300262787 /* NetworkService.swift in Sources */,
+				48FA3291287ABA5800260956 /* MyHomeViewController.swift in Sources */,
+				48FA328B287AB96D00260956 /* ExtensionUIColor.swift in Sources */,
+				48C177D42878546C001CA0EB /* CamerasRealm.swift in Sources */,
+				48C177DF28785AC2001CA0EB /* RealmCashService.swift in Sources */,
+				48401E5A287753A600262787 /* AppDelegate.swift in Sources */,
+				48FA3289287AB92600260956 /* ExtensionUIImageView.swift in Sources */,
+				48C177D628785490001CA0EB /* DoorsRealm.swift in Sources */,
+				48897A2E28854AAF00B2F863 /* CameraSection.swift in Sources */,
+				48FA328F287AB9FF00260956 /* CamerasCell.swift in Sources */,
+				48401E5C287753A600262787 /* SceneDelegate.swift in Sources */,
+				48897A2B2885469800B2F863 /* Factory.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		48401E64287753A700262787 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				48401E65287753A700262787 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		48401E68287753A700262787 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		48401E69287753A700262787 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		48401E6B287753A700262787 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = M95S853Q8R;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Rubetek/AppFiles/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Runetek;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = ART.Rubetek;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		48401E6C287753A700262787 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = M95S853Q8R;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Rubetek/AppFiles/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Runetek;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = ART.Rubetek;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		48401E51287753A600262787 /* Build configuration list for PBXProject "Rubetek" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				48401E68287753A700262787 /* Debug */,
+				48401E69287753A700262787 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		48401E6A287753A700262787 /* Build configuration list for PBXNativeTarget "Rubetek" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				48401E6B287753A700262787 /* Debug */,
+				48401E6C287753A700262787 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		48C177D828785720001CA0EB /* XCRemoteSwiftPackageReference "realm-swift.git" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/realm/realm-swift.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+	};
+	rootObject = 48401E4E287753A600262787 /* Project object */;
+}
