@@ -26,9 +26,11 @@
 		48FA3291287ABA5800260956 /* MyHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48FA3290287ABA5800260956 /* MyHomeViewController.swift */; };
 		48FA3293287AF5E200260956 /* DoorsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48FA3292287AF5E200260956 /* DoorsCell.swift */; };
 		48FA3295287B0C2300260956 /* LockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48FA3294287B0C2200260956 /* LockView.swift */; };
+		9700A8B6BAFBB761A5447816 /* Pods_Rubetek.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BABD36A3345CA9EC54B7C4B0 /* Pods_Rubetek.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0A7560E1318EC11FB84D6F6B /* Pods-Rubetek.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Rubetek.release.xcconfig"; path = "Target Support Files/Pods-Rubetek/Pods-Rubetek.release.xcconfig"; sourceTree = "<group>"; };
 		48401D4E2880507C009790EC /* Podfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		48401E56287753A600262787 /* Rubetek.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Rubetek.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		48401E59287753A600262787 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -50,6 +52,8 @@
 		48FA3290287ABA5800260956 /* MyHomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyHomeViewController.swift; sourceTree = "<group>"; };
 		48FA3292287AF5E200260956 /* DoorsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoorsCell.swift; sourceTree = "<group>"; };
 		48FA3294287B0C2200260956 /* LockView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LockView.swift; sourceTree = "<group>"; };
+		BABD36A3345CA9EC54B7C4B0 /* Pods_Rubetek.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Rubetek.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		BAC7B55BC552C375FBB37ED5 /* Pods-Rubetek.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Rubetek.debug.xcconfig"; path = "Target Support Files/Pods-Rubetek/Pods-Rubetek.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,6 +61,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9700A8B6BAFBB761A5447816 /* Pods_Rubetek.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -66,6 +71,8 @@
 		13218B386AA6B18D9FD23D08 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
+				BAC7B55BC552C375FBB37ED5 /* Pods-Rubetek.debug.xcconfig */,
+				0A7560E1318EC11FB84D6F6B /* Pods-Rubetek.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -77,6 +84,7 @@
 				48401E58287753A600262787 /* Rubetek */,
 				48401E57287753A600262787 /* Products */,
 				13218B386AA6B18D9FD23D08 /* Pods */,
+				A06ACEA554F019C768BB5BEA /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -186,6 +194,14 @@
 			path = RealmBase;
 			sourceTree = "<group>";
 		};
+		A06ACEA554F019C768BB5BEA /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				BABD36A3345CA9EC54B7C4B0 /* Pods_Rubetek.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -193,9 +209,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 48401E6A287753A700262787 /* Build configuration list for PBXNativeTarget "Rubetek" */;
 			buildPhases = (
+				960C6A8DC4D5CDF5C15DB042 /* [CP] Check Pods Manifest.lock */,
 				48401E52287753A600262787 /* Sources */,
 				48401E53287753A600262787 /* Frameworks */,
 				48401E54287753A600262787 /* Resources */,
+				6F8DA2C1FF0F66EAC8750F59 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -254,6 +272,48 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		6F8DA2C1FF0F66EAC8750F59 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Rubetek/Pods-Rubetek-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Rubetek/Pods-Rubetek-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Rubetek/Pods-Rubetek-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		960C6A8DC4D5CDF5C15DB042 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Rubetek-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		48401E52287753A600262787 /* Sources */ = {
@@ -411,6 +471,7 @@
 		};
 		48401E6B287753A700262787 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = BAC7B55BC552C375FBB37ED5 /* Pods-Rubetek.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -439,6 +500,7 @@
 		};
 		48401E6C287753A700262787 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0A7560E1318EC11FB84D6F6B /* Pods-Rubetek.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
