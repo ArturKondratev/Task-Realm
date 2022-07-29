@@ -9,7 +9,6 @@ import Foundation
 import RealmSwift
 
 class DoorsRealmModel: Object {
-   // @Persisted(primaryKey: true) var key = UUID()
     
     @Persisted var name: String
     @Persisted var room: String?

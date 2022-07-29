@@ -5,6 +5,7 @@
 //  Created by Артур Кондратьев on 07.07.2022.
 //
 import Foundation
+import RealmSwift
 
 fileprivate enum TypeMethods: String {
     case camerasGet = "/api/rubetek/cameras"
@@ -17,10 +18,10 @@ fileprivate enum TypeRequest: String {
 }
 
 final class NetworkService {
-    private let realmService = RealmCashService()
     private let scheme = "http"
     private let host = "cars.cprogroup.ru"
     private let decoder = JSONDecoder()
+    private let realmService = RealmCashService()
     
     enum ServiceError: Error {
         case parseError
@@ -35,7 +36,7 @@ final class NetworkService {
     }()
     
     //MARK: - Load Cameras
-    func loadCameras(completin: @escaping ([CamerasRealmModel]) -> Void) {
+    func loadCameras(completion: @escaping ([CamerasRealmModel], [CamerasRealmRoom]) -> Void) {
         
         let url = self.configureUrl(method: .camerasGet, httpMethod: .get)
         
@@ -49,21 +50,34 @@ final class NetworkService {
                 let realmPost = CamerasRealmModel()
                 realmPost.name = result.name
                 realmPost.snapshot = result.snapshot
-                realmPost.room = result.room ?? "Some"
+                realmPost.room = result.room ?? results.data.room.last
                 realmPost.id = result.id
                 realmPost.favorites = result.favorites
                 realmPost.rec = result.rec
                 return realmPost
             }
             
-            completin(Array(realmCameras))
+            let realmCamerasRooms: [CamerasRealmRoom] = results.data.room.map { roomName in
+                
+                let realmPost = CamerasRealmRoom()
+                realmPost.roomName = roomName
+                
+                let filterCameram = realmCameras.filter({ $0.room == roomName })
+                
+                for camera in filterCameram {
+                    realmPost.cameras.append(camera)
+                }
+                return realmPost
+            }
+            
+            completion(Array(realmCameras), Array(realmCamerasRooms))
         }
         .resume()
     }
     
     //MARK: - Load Doors
     
-    func loadDoors(completin: @escaping ([DoorsRealmModel]) -> Void) {
+    func loadDoors(completion: @escaping ([DoorsRealmModel]) -> Void) {
         let url = configureUrl(method: .doorsGet, httpMethod: .get)
         
         URLSession.shared.dataTask(with: url) { data, _, _ in
@@ -82,7 +96,7 @@ final class NetworkService {
                 
                 return realmPost
             }
-            completin(Array(realmDoors))
+            completion(Array(realmDoors))
         }
         .resume()
     }

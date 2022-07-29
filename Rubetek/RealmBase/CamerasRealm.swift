@@ -8,8 +8,13 @@
 import Foundation
 import RealmSwift
 
+class CamerasRealmRoom: Object {
+    
+    @Persisted(primaryKey: true) var roomName: String
+    @Persisted var cameras: List<CamerasRealmModel>
+}
+
 class CamerasRealmModel: Object {
-  //  @Persisted(primaryKey: true) var key = UUID()
     
     @Persisted var name: String
     @Persisted var snapshot: String

@@ -15,8 +15,6 @@
 		48401E74287763B300262787 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48401E73287763B300262787 /* NetworkService.swift */; };
 		48401E762877686900262787 /* CamerasModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48401E752877686900262787 /* CamerasModel.swift */; };
 		48401E792877712600262787 /* DoorModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48401E782877712600262787 /* DoorModel.swift */; };
-		48897A2B2885469800B2F863 /* Factory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48897A2A2885469800B2F863 /* Factory.swift */; };
-		48897A2E28854AAF00B2F863 /* CameraSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48897A2D28854AAF00B2F863 /* CameraSection.swift */; };
 		48C177D42878546C001CA0EB /* CamerasRealm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48C177D32878546C001CA0EB /* CamerasRealm.swift */; };
 		48C177D628785490001CA0EB /* DoorsRealm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48C177D528785490001CA0EB /* DoorsRealm.swift */; };
 		48C177DF28785AC2001CA0EB /* RealmCashService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48C177DE28785AC2001CA0EB /* RealmCashService.swift */; };
@@ -41,8 +39,6 @@
 		48401E73287763B300262787 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		48401E752877686900262787 /* CamerasModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CamerasModel.swift; sourceTree = "<group>"; };
 		48401E782877712600262787 /* DoorModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoorModel.swift; sourceTree = "<group>"; };
-		48897A2A2885469800B2F863 /* Factory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Factory.swift; sourceTree = "<group>"; };
-		48897A2D28854AAF00B2F863 /* CameraSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraSection.swift; sourceTree = "<group>"; };
 		48C177D32878546C001CA0EB /* CamerasRealm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CamerasRealm.swift; sourceTree = "<group>"; };
 		48C177D528785490001CA0EB /* DoorsRealm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoorsRealm.swift; sourceTree = "<group>"; };
 		48C177DE28785AC2001CA0EB /* RealmCashService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmCashService.swift; sourceTree = "<group>"; };
@@ -131,7 +127,6 @@
 		48401E712877630900262787 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				48897A2C28854A8900B2F863 /* Factory */,
 				48401E7A2877747F00262787 /* Extension */,
 				48401E722877631E00262787 /* NetworkManager */,
 				48401E77287770FF00262787 /* Models */,
@@ -163,15 +158,6 @@
 				48FA328A287AB96D00260956 /* ExtensionUIColor.swift */,
 			);
 			path = Extension;
-			sourceTree = "<group>";
-		};
-		48897A2C28854A8900B2F863 /* Factory */ = {
-			isa = PBXGroup;
-			children = (
-				48897A2A2885469800B2F863 /* Factory.swift */,
-				48897A2D28854AAF00B2F863 /* CameraSection.swift */,
-			);
-			path = Factory;
 			sourceTree = "<group>";
 		};
 		48C177CD287846BB001CA0EB /* View */ = {
@@ -249,7 +235,7 @@
 			);
 			mainGroup = 48401E4D287753A600262787;
 			packageReferences = (
-				48C177D828785720001CA0EB /* XCRemoteSwiftPackageReference "realm-swift.git" */,
+				48C177D828785720001CA0EB /* XCRemoteSwiftPackageReference "realm-swift" */,
 			);
 			productRefGroup = 48401E57287753A600262787 /* Products */;
 			projectDirPath = "";
@@ -332,10 +318,8 @@
 				48401E5A287753A600262787 /* AppDelegate.swift in Sources */,
 				48FA3289287AB92600260956 /* ExtensionUIImageView.swift in Sources */,
 				48C177D628785490001CA0EB /* DoorsRealm.swift in Sources */,
-				48897A2E28854AAF00B2F863 /* CameraSection.swift in Sources */,
 				48FA328F287AB9FF00260956 /* CamerasCell.swift in Sources */,
 				48401E5C287753A600262787 /* SceneDelegate.swift in Sources */,
-				48897A2B2885469800B2F863 /* Factory.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -551,7 +535,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		48C177D828785720001CA0EB /* XCRemoteSwiftPackageReference "realm-swift.git" */ = {
+		48C177D828785720001CA0EB /* XCRemoteSwiftPackageReference "realm-swift" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/realm/realm-swift.git";
 			requirement = {

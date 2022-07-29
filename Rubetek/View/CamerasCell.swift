@@ -9,6 +9,8 @@ import UIKit
 
 class CamerasCell: UITableViewCell {
     
+    static let identifier: String = "CamerasCell"
+    
     lazy var cameraImage: UIImageView = {
         let image = UIImageView()
         image.translatesAutoresizingMaskIntoConstraints = false
@@ -50,6 +52,7 @@ class CamerasCell: UITableViewCell {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont.systemFont(ofSize: 14)
+        label.backgroundColor = .white
         return label
     }()
     
@@ -110,8 +113,7 @@ extension CamerasCell {
     
     func configure(model: CamerasRealmModel) {
         self.cameraName.text = model.name
-        self.cameraImage.downloadedFrom(link: model.snapshot)
-        
+        self.cameraImage.downloadImage(link: model.snapshot)
         
         recState(state: model.rec)
         favoriteState(state: model.favorites)

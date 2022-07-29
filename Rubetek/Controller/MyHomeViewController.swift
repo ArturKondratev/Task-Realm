@@ -11,19 +11,14 @@ import RealmSwift
 class MyHomeViewController: UIViewController {
     
     // MARK: - Vars
-    var refrControl = UIRefreshControl()
     var networkService = NetworkService()
-    
     var realmService = RealmCashService()
-    var realmNotificationCamera: NotificationToken?
+    
+    var realmNotificationCameraRoom: NotificationToken?
     var realmNotificationDoor: NotificationToken?
     
-    var cameras = [CamerasRealmModel]()
+    var rooms = [CamerasRealmRoom]()
     var doors = [DoorsRealmModel]()
-    
-    lazy var filtredCameras = [CameraSection]()
-    
-    var roomsName = [String]()
     
     lazy var camerasButton: UIButton = {
         let camerasButton = UIButton(type: .system)
@@ -53,14 +48,43 @@ class MyHomeViewController: UIViewController {
         return segment
     }()
     
-    lazy var myTableView: UITableView = {
+    lazy var cameraTableView: UITableView = {
         let tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.separatorStyle = .none
         tableView.backgroundColor = .white
-        tableView.delegate = self
-        tableView.dataSource = self
         tableView.rowHeight = 290
+        tableView.isHidden = true
+       // tableView.delegate = self
+       // tableView.dataSource = self
+       // tableView.register(CamerasCell.self, forCellReuseIdentifier: CamerasCell.identifier)
+        let cameraRefControl: UIRefreshControl = {
+            let refControl = UIRefreshControl()
+            refControl.attributedTitle = NSAttributedString(string: "Refreshing...")
+            refControl.addTarget(self, action: #selector(refreshData(_:)), for: .valueChanged)
+            return refControl
+        }()
+        tableView.refreshControl = cameraRefControl
+        return tableView
+    }()
+    
+    lazy var doorTableView: UITableView = {
+        let tableView = UITableView()
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        tableView.separatorStyle = .none
+        tableView.backgroundColor = .white
+        tableView.rowHeight = 290
+        tableView.isHidden = true
+        //tableView.delegate = self
+        //tableView.dataSource = self
+        //tableView.register(DoorsCell.self, forCellReuseIdentifier: DoorsCell.identifier)
+        let doorRefControl: UIRefreshControl = {
+            let refControl = UIRefreshControl()
+            refControl.attributedTitle = NSAttributedString(string: "Refreshing...")
+            refControl.addTarget(self, action: #selector(refreshData(_:)), for: .valueChanged)
+            return refControl
+        }()
+        tableView.refreshControl = doorRefControl
         return tableView
     }()
     
@@ -68,28 +92,33 @@ class MyHomeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        myTableView.delegate = self
-        myTableView.dataSource = self
+        
         self.title = "Мой дом"
         view.backgroundColor = .white
         setupViews()
-        setupRefreshControl()
         
         loadDataCameras()
         loadDataDoors()
-        loadCameraNames()
-        
-        makeObserverCameras(realm: realmService.realm)
+        makeObserverCamerasRooms(realm: realmService.realm)
         makeObserverDoors(realm: realmService.realm)
+       
+        cameraTableView.register(CamerasCell.self, forCellReuseIdentifier: CamerasCell.identifier)
+        doorTableView.register(DoorsCell.self, forCellReuseIdentifier: DoorsCell.identifier)
         
-        switch segmentControl.selectedSegmentIndex {
-        case 0:
-            myTableView.register(CamerasCell.self, forCellReuseIdentifier: "CameraCell")
-        default:
-            myTableView.register(DoorsCell.self, forCellReuseIdentifier: "DoorCell")
+        if segmentControl.selectedSegmentIndex == 0 {
+            cameraTableView.isHidden = false
+            cameraTableView.delegate = self
+            cameraTableView.dataSource = self
+            cameraTableView.register(CamerasCell.self, forCellReuseIdentifier: CamerasCell.identifier)
+            cameraTableView.reloadData()
+            
+        } else {
+            doorTableView.isHidden = false
+            doorTableView.delegate = self
+            doorTableView.dataSource = self
+            doorTableView.register(DoorsCell.self, forCellReuseIdentifier: DoorsCell.identifier)
+            doorTableView.reloadData()
         }
-        
-        myTableView.reloadData()
     }
 }
 
@@ -121,12 +150,20 @@ extension MyHomeViewController {
             segmentControl.widthAnchor.constraint(equalToConstant: view.frame.width)
         ])
         
-        view.addSubview(myTableView)
+        view.addSubview(cameraTableView)
         NSLayoutConstraint.activate([
-            myTableView.topAnchor.constraint(equalTo: segmentControl.bottomAnchor, constant: 5),
-            myTableView.leftAnchor.constraint(equalTo: view.leftAnchor),
-            myTableView.rightAnchor.constraint(equalTo: view.rightAnchor),
-            myTableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+            cameraTableView.topAnchor.constraint(equalTo: segmentControl.bottomAnchor, constant: 5),
+            cameraTableView.leftAnchor.constraint(equalTo: view.leftAnchor),
+            cameraTableView.rightAnchor.constraint(equalTo: view.rightAnchor),
+            cameraTableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+        ])
+        
+        view.addSubview(doorTableView)
+        NSLayoutConstraint.activate([
+            doorTableView.topAnchor.constraint(equalTo: segmentControl.bottomAnchor, constant: 5),
+            doorTableView.leftAnchor.constraint(equalTo: view.leftAnchor),
+            doorTableView.rightAnchor.constraint(equalTo: view.rightAnchor),
+            doorTableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
     }
 }
@@ -134,23 +171,47 @@ extension MyHomeViewController {
 //MARK: - UITableViewDataSource, UITableViewDelegate
 extension MyHomeViewController: UITableViewDelegate, UITableViewDataSource {
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let camera = filtredCameras[indexPath.section]
-        let favCamera = camera.data[indexPath.row]
-        let door = doors[indexPath.row]
-        
+    //    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    //        switch segmentControl.selectedSegmentIndex {
+    //        case 0:
+    //            let titleName = rooms[indexPath.section].roomName
+    //            let filterCameras = cameras.filter({ $0.room == titleName})
+    //            let camera = filterCameras[indexPath.row]
+    //            print(camera)
+    //
+    //        default:
+    //            let door = doors[indexPath.row]
+    //            print(door)
+    //        }
+    //    }
+    
+    //        func sectionIndexTitles(for tableView: UITableView) -> [String]? {
+    //            return roomsName
+    //        }
+    
+//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+//        
+//        switch segmentControl.selectedSegmentIndex {
+//        case 0:
+//            return UITableView.automaticDimension
+//        default:
+//            return 40
+//        }
+//    }
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         switch segmentControl.selectedSegmentIndex {
         case 0:
-            print(favCamera)
+            return rooms[section].roomName
         default:
-            print(door)
+            return nil
         }
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
         switch segmentControl.selectedSegmentIndex {
         case 0:
-            return filtredCameras.count
+            return rooms.count
         default:
             return 1
         }
@@ -159,38 +220,27 @@ extension MyHomeViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch segmentControl.selectedSegmentIndex {
         case 0:
-            return filtredCameras[section].data.count
+            let currentRoom = rooms[section]
+            let count = currentRoom.cameras.count
+            return currentRoom.cameras.isEmpty ? 0 : count
         default:
             return doors.count
         }
     }
     
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        switch segmentControl.selectedSegmentIndex {
-        case 0:
-            let section = filtredCameras[section]
-            return section.key
-        default:
-            return nil
-        }
-    }
-    
-    //    func sectionIndexTitles(for tableView: UITableView) -> [String]? {
-    //        return roomsName
-    //    }
-    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch segmentControl.selectedSegmentIndex {
         case 0:
             guard
-                let cell = tableView.dequeueReusableCell(withIdentifier: "CameraCell", for: indexPath) as? CamerasCell else { return UITableViewCell() }
-            let section = filtredCameras[indexPath.section]
-            cell.configure(model: section.data[indexPath.row])
+                let cell = tableView.dequeueReusableCell(withIdentifier: CamerasCell.identifier, for: indexPath) as? CamerasCell else { return UITableViewCell() }
+            let currentRoom = rooms[indexPath.section]
+            let currentCamera = currentRoom.cameras[indexPath.row]
+            cell.configure(model: currentCamera)
             return cell
             
         default:
             guard
-                let cell = tableView.dequeueReusableCell(withIdentifier: "DoorCell", for: indexPath) as? DoorsCell else { return UITableViewCell() }
+                let cell = tableView.dequeueReusableCell(withIdentifier: DoorsCell.identifier, for: indexPath) as? DoorsCell else { return UITableViewCell() }
             let door = doors[indexPath.row]
             cell.configure(model: door)
             return cell
@@ -202,13 +252,15 @@ extension MyHomeViewController: UITableViewDelegate, UITableViewDataSource {
         //MARK: - Add favorite camera
         if segmentControl.selectedSegmentIndex == 0 {
             
-            let camera = filtredCameras[indexPath.section]
-            let favCamera = camera.data[indexPath.row]
+            let currentRoom = rooms[indexPath.section]
+            let currentCamera = currentRoom.cameras[indexPath.row]
             
             let addFavorite = UIContextualAction(style: .normal, title: .none) { _, _, _ in
                 
-                favCamera.favorites = !favCamera.favorites
-                self.realmService.update([favCamera])
+                let realm = try! Realm()
+                try! realm.write {
+                    currentCamera.favorites = !currentCamera.favorites
+                }
             }
             addFavorite.backgroundColor = .lightGrayBackground
             addFavorite.image = {
@@ -225,7 +277,7 @@ extension MyHomeViewController: UITableViewDelegate, UITableViewDataSource {
             
             let door = doors[indexPath.row]
             
-            //MARK: - Rename door
+            //MARK: - Rename doorx
             let edit = UIContextualAction(style: .normal, title: .none) { _, _, _ in
                 self.renameModel(name: door.name) { newName in
                     if door.name != newName {
@@ -267,20 +319,15 @@ extension MyHomeViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     //MARK: - Pull-to-refresh
-    func setupRefreshControl() {
-        refrControl.attributedTitle = NSAttributedString(string: "Refreshing...")
-        refrControl.tintColor = .systemBlue
-        refrControl.addTarget(self, action: #selector(refreshData(_:)), for: .valueChanged)
-        myTableView.refreshControl = refrControl
-    }
     
     @objc func refreshData(_ sender: UIRefreshControl) {
         defer { sender.endRefreshing()}
         
         switch segmentControl.selectedSegmentIndex {
         case 0 :
-            networkService.loadCameras { cameras in
+            networkService.loadCameras { cameras, rooms  in
                 self.realmService.update(cameras)
+                self.realmService.update(rooms)
             }
         default:
             networkService.loadDoors { doors in
@@ -291,10 +338,11 @@ extension MyHomeViewController: UITableViewDelegate, UITableViewDataSource {
     
     //MARK: - Functions
     func loadDataCameras() {
-        let camerasRealm = realmService.read(CamerasRealmModel.self)
-        if camerasRealm.isEmpty {
-            networkService.loadCameras { cameras in
+        let roomsWithCameras = realmService.read(CamerasRealmRoom.self)
+        if roomsWithCameras.isEmpty {
+            networkService.loadCameras { cameras, rooms in
                 self.realmService.create(cameras)
+                self.realmService.create(rooms)
             }
         }
     }
@@ -310,22 +358,37 @@ extension MyHomeViewController: UITableViewDelegate, UITableViewDataSource {
     
     @objc func showCameras(sender: UIButton) {
         self.segmentControl.selectedSegmentIndex = 0
-        myTableView.register(CamerasCell.self, forCellReuseIdentifier: "CameraCell")
+        self.doorTableView.isHidden = true
+        self.cameraTableView.isHidden = false
+        doorTableView.delegate = nil
+        doorTableView.dataSource = nil
+        
+        cameraTableView.delegate = self
+        cameraTableView.dataSource = self
+        //cameraTableView.register(CamerasCell.self, forCellReuseIdentifier: CamerasCell.identifier)
+        
         DispatchQueue.main.async {
-            self.myTableView.reloadData()
+            self.cameraTableView.reloadData()
         }
     }
     
     @objc func showDoors(sender: UIButton) {
         self.segmentControl.selectedSegmentIndex = 1
-        myTableView.register(DoorsCell.self, forCellReuseIdentifier: "DoorCell")
+        self.cameraTableView.isHidden = true
+        self.doorTableView.isHidden = false
+        cameraTableView.delegate = nil
+        cameraTableView.dataSource = nil
+        
+        doorTableView.delegate = self
+        doorTableView.dataSource = self
+        //doorTableView.register(DoorsCell.self, forCellReuseIdentifier: DoorsCell.identifier)
+        
         DispatchQueue.main.async {
-            self.myTableView.reloadData()
+            self.doorTableView.reloadData()
         }
     }
     
     func renameModel(name: String, completinHandler: @escaping (String) -> Void) {
-        
         let alertController =  UIAlertController(title: "Введите новое имя",
                                                  message: name,
                                                  preferredStyle: .alert)
@@ -344,33 +407,32 @@ extension MyHomeViewController: UITableViewDelegate, UITableViewDataSource {
         present(alertController, animated: true, completion: nil)
     }
     
-    func makeObserverCameras(realm: Realm) {
-        let objs = realmService.realm.objects(CamerasRealmModel.self)
-        realmNotificationCamera = objs.observe({ changes in
+    func makeObserverCamerasRooms(realm: Realm) {
+        let objs = realmService.realm.objects(CamerasRealmRoom.self)
+        
+        realmNotificationCameraRoom = objs.observe({ changes in
             
             switch changes {
             case let .initial(objs):
-                // self.cameras = Array(objs)
-                self.filtredCameras = Factory.filterCameras(cameras: Array(objs))
-                self.myTableView.reloadData()
+                self.rooms = Array(objs)
+                self.cameraTableView.reloadData()
             case .error(let error): print(error)
-            case .update(let cameras, deletions: let deletions, insertions: let insertions, modifications: let modifications):
+            case .update(let rooms, deletions: let deletions, insertions: let insertions, modifications: let modifications):
                 
                 DispatchQueue.main.async { [self] in
-                    // self.cameras = Array(cameras)
-                    self.filtredCameras = Factory.filterCameras(cameras: Array(cameras))
+                    self.rooms = Array(rooms)
                     
                     let deletionIndexSet = deletions.reduce(into: IndexSet(), { $0.insert($1) })
                     let insertIndexset = insertions.reduce(into: IndexSet(), { $0.insert($1) })
                     let modificationIndexSet = modifications.reduce(into: IndexSet(), { $0.insert($1) })
                     
-                    self.myTableView.beginUpdates()
+                    self.cameraTableView.beginUpdates()
                     
-                    self.myTableView.deleteSections(deletionIndexSet, with: .automatic)
-                    self.myTableView.insertSections(insertIndexset, with: .automatic)
-                    self.myTableView.reloadSections(modificationIndexSet, with: .automatic)
+                    self.cameraTableView.deleteSections(deletionIndexSet, with: .automatic)
+                    self.cameraTableView.insertSections(insertIndexset, with: .automatic)
+                    self.cameraTableView.reloadSections(modificationIndexSet, with: .automatic)
                     
-                    self.myTableView.endUpdates()
+                    self.cameraTableView.endUpdates()
                 }
             }
         })
@@ -383,29 +445,22 @@ extension MyHomeViewController: UITableViewDelegate, UITableViewDataSource {
             switch changes {
             case let .initial(objs):
                 self.doors = Array(objs)
-                self.myTableView.reloadData()
+                self.doorTableView.reloadData()
             case .error(let error): print(error)
             case .update(let doors, deletions: let deletions, insertions: let insertions, modifications: let modifications):
                 
                 DispatchQueue.main.async { [self] in
                     self.doors = Array(doors)
                     
-                    self.myTableView.beginUpdates()
+                    self.doorTableView.beginUpdates()
                     
-                    self.myTableView.insertRows(at: insertions.map ({ IndexPath(row: $0, section: 0)}), with: .automatic)
-                    self.myTableView.deleteRows(at: deletions.map({ IndexPath(row: $0, section: 0)}), with: .automatic)
-                    self.myTableView.reloadRows(at: modifications.map({ IndexPath(row: $0, section: 0)}), with: .automatic)
+                    self.doorTableView.insertRows(at: insertions.map ({ IndexPath(row: $0, section: 0)}), with: .automatic)
+                    self.doorTableView.deleteRows(at: deletions.map({ IndexPath(row: $0, section: 0)}), with: .automatic)
+                    self.doorTableView.reloadRows(at: modifications.map({ IndexPath(row: $0, section: 0)}), with: .automatic)
                     
-                    self.myTableView.endUpdates()
+                    self.doorTableView.endUpdates()
                 }
             }
         })
     }
-    
-    func loadCameraNames() {
-        for camera in filtredCameras {
-            roomsName.append(String(camera.key))
-        }
-    }
-    
 }

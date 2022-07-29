@@ -41,8 +41,13 @@ class RealmCashService {
         }
     }
     
-    func read<T: Object>(_ object: T.Type) -> Results<T> {
-        return realm.objects(T.self)
+//    func read<T: Object>(_ object: T.Type) -> Results<T> {
+//        return realm.objects(T.self)
+//    }
+    
+    func read<T: Object>(_ object: T.Type) -> [T] {
+        let object = Array(realm.objects(T.self))
+        return object
     }
     
     func update<T: Object>(_ objects: [T]) {

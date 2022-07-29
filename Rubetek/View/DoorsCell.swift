@@ -9,6 +9,8 @@ import UIKit
 
 class DoorsCell: UITableViewCell {
     
+    static let identifier: String = "DoorsCell"
+    
     lazy var doorImage: UIImageView = {
         let image = UIImageView()
         image.translatesAutoresizingMaskIntoConstraints = false
@@ -41,12 +43,14 @@ class DoorsCell: UITableViewCell {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont.systemFont(ofSize: 14)
+        label.backgroundColor = .white
         return label
     }()
     
     lazy var lockView: LockView = {
         let lock = LockView()
         lock.translatesAutoresizingMaskIntoConstraints = false
+        lock.backgroundColor = .white
         return lock
     }()
     
@@ -59,6 +63,13 @@ class DoorsCell: UITableViewCell {
         self.setupViews()
     }
     
+    let image = "https://www.industrialempathy.com/img/remote/ZiClJf-1920w.jpg"
+    
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+       // iconFrame()
+    }
 }
 
 extension DoorsCell {
@@ -107,16 +118,40 @@ extension DoorsCell {
     
     func configure(model: DoorsRealmModel) {
         self.cameraName.text = model.name
-        favoriteState(state: model.favorites)
+       // favoriteState(state: model.favorites)
        
-        if ((model.snapshot?.isEmpty) != nil) {
-            self.doorImage.downloadedFrom(link: model.snapshot ?? "")
+       // if ((model.snapshot?.isEmpty) != nil) {
+        
+            self.doorImage.downloadImage(link: model.snapshot ?? image)
             favoriteState(state: model.favorites)
-        }
+          //  iconFrame()
+      //  }
     }
     
     func favoriteState(state: Bool) {
         self.favoriteImage.isHidden = state ? false : true
     }
     
+    
+//    func iconFrame() {
+//
+//        let iconSideLinght: CGFloat = 100
+//
+//        let iconSize = CGSize(width: iconSideLinght,
+//                              height: iconSideLinght)
+//        let iconOrigin = CGPoint(x: bounds.midX - iconSideLinght / 2,
+//                                 y: bounds.midY - iconSideLinght / 2)
+//
+//        doorImage.frame = CGRect(origin: iconOrigin, size: iconSize)
+//    }
+    
+    
+//    func iconFrame() {
+//    let iconSideLinght: CGFloat = 200
+//        let iconSize = CGSize(width: bounds.width - 60, height:
+//    iconSideLinght)
+//    let iconOrigin = CGPoint(x: bounds.midX - iconSideLinght / 2, y:
+//    bounds.midY - iconSideLinght / 2)
+//        doorImage.frame = CGRect(origin: iconOrigin, size: iconSize)
+//    }
 }

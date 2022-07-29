@@ -24,7 +24,7 @@ class LockView: UIControl {
     
     private func setupView() {
         
-        self.backgroundColor = .clear
+        self.backgroundColor = .white
         
         let imageCloseLock = UIImage(systemName: "lock.fill")
         lock.frame = CGRect(x: 10 , y: 15, width: 30, height: 20)
