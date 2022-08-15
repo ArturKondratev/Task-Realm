@@ -75,9 +75,13 @@ extension CamerasCell {
         contentView.addSubview(cameraImage)
         NSLayoutConstraint.activate([
             cameraImage.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 20),
+            
+            cameraImage.bottomAnchor.constraint(equalTo: contentView.topAnchor, constant: 0),
+            
             cameraImage.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 30),
+            
             cameraImage.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -30),
-            cameraImage.heightAnchor.constraint(equalToConstant: 200)
+           // cameraImage.heightAnchor.constraint(equalToConstant: 200)
         ])
         
         cameraImage.addSubview(recLable)

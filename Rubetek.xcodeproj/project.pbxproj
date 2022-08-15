@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		483D03E2289D43C6009BEAE4 /* DoorsImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 483D03E1289D43C6009BEAE4 /* DoorsImageCell.swift */; };
 		48401D4F2880507C009790EC /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = 48401D4E2880507C009790EC /* Podfile */; };
 		48401E5A287753A600262787 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48401E59287753A600262787 /* AppDelegate.swift */; };
 		48401E5C287753A600262787 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48401E5B287753A600262787 /* SceneDelegate.swift */; };
@@ -29,6 +30,7 @@
 
 /* Begin PBXFileReference section */
 		0A7560E1318EC11FB84D6F6B /* Pods-Rubetek.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Rubetek.release.xcconfig"; path = "Target Support Files/Pods-Rubetek/Pods-Rubetek.release.xcconfig"; sourceTree = "<group>"; };
+		483D03E1289D43C6009BEAE4 /* DoorsImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoorsImageCell.swift; sourceTree = "<group>"; };
 		48401D4E2880507C009790EC /* Podfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		48401E56287753A600262787 /* Rubetek.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Rubetek.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		48401E59287753A600262787 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -98,7 +100,7 @@
 				48401E6F2877624C00262787 /* AppFiles */,
 				48C177D228785435001CA0EB /* RealmBase */,
 				48401E712877630900262787 /* Model */,
-				48C177CD287846BB001CA0EB /* View */,
+				48C177CD287846BB001CA0EB /* Cell */,
 				48401E70287762F800262787 /* Controller */,
 			);
 			path = Rubetek;
@@ -160,14 +162,23 @@
 			path = Extension;
 			sourceTree = "<group>";
 		};
-		48C177CD287846BB001CA0EB /* View */ = {
+		4858A65928AA6F20008259DF /* CamerasCell */ = {
 			isa = PBXGroup;
 			children = (
 				48FA328E287AB9FF00260956 /* CamerasCell.swift */,
+			);
+			path = CamerasCell;
+			sourceTree = "<group>";
+		};
+		48C177CD287846BB001CA0EB /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				4858A65928AA6F20008259DF /* CamerasCell */,
+				483D03E1289D43C6009BEAE4 /* DoorsImageCell.swift */,
 				48FA3292287AF5E200260956 /* DoorsCell.swift */,
 				48FA3294287B0C2200260956 /* LockView.swift */,
 			);
-			path = View;
+			path = Cell;
 			sourceTree = "<group>";
 		};
 		48C177D228785435001CA0EB /* RealmBase */ = {
@@ -310,6 +321,7 @@
 				48FA3295287B0C2300260956 /* LockView.swift in Sources */,
 				48401E762877686900262787 /* CamerasModel.swift in Sources */,
 				48401E792877712600262787 /* DoorModel.swift in Sources */,
+				483D03E2289D43C6009BEAE4 /* DoorsImageCell.swift in Sources */,
 				48401E74287763B300262787 /* NetworkService.swift in Sources */,
 				48FA3291287ABA5800260956 /* MyHomeViewController.swift in Sources */,
 				48FA328B287AB96D00260956 /* ExtensionUIColor.swift in Sources */,
