@@ -87,7 +87,6 @@ class MyHomeViewController: UIViewController {
         
         self.title = "Мой дом"
         view.backgroundColor = .lightGrayBackground
-        view.tintColor = .lightGrayBackground
         setupViews()
         
         loadDataCameras()

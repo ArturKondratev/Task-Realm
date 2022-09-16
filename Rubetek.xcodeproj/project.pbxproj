@@ -100,7 +100,7 @@
 				48401E6F2877624C00262787 /* AppFiles */,
 				48C177D228785435001CA0EB /* RealmBase */,
 				48401E712877630900262787 /* Model */,
-				48C177CD287846BB001CA0EB /* Cell */,
+				48C177CD287846BB001CA0EB /* View */,
 				48401E70287762F800262787 /* Controller */,
 			);
 			path = Rubetek;
@@ -170,23 +170,39 @@
 			path = CamerasCell;
 			sourceTree = "<group>";
 		};
-		48C177CD287846BB001CA0EB /* Cell */ = {
+		489A772F28D4955C00AA65E8 /* DoorsCell */ = {
 			isa = PBXGroup;
 			children = (
-				4858A65928AA6F20008259DF /* CamerasCell */,
 				483D03E1289D43C6009BEAE4 /* DoorsImageCell.swift */,
 				48FA3292287AF5E200260956 /* DoorsCell.swift */,
 				48FA3294287B0C2200260956 /* LockView.swift */,
 			);
-			path = Cell;
+			path = DoorsCell;
+			sourceTree = "<group>";
+		};
+		489A773028D495A600AA65E8 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				48C177D32878546C001CA0EB /* CamerasRealm.swift */,
+				48C177D528785490001CA0EB /* DoorsRealm.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		48C177CD287846BB001CA0EB /* View */ = {
+			isa = PBXGroup;
+			children = (
+				4858A65928AA6F20008259DF /* CamerasCell */,
+				489A772F28D4955C00AA65E8 /* DoorsCell */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		48C177D228785435001CA0EB /* RealmBase */ = {
 			isa = PBXGroup;
 			children = (
 				48C177DE28785AC2001CA0EB /* RealmCashService.swift */,
-				48C177D32878546C001CA0EB /* CamerasRealm.swift */,
-				48C177D528785490001CA0EB /* DoorsRealm.swift */,
+				489A773028D495A600AA65E8 /* Models */,
 			);
 			path = RealmBase;
 			sourceTree = "<group>";
