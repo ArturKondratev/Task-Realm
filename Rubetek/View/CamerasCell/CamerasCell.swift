@@ -15,7 +15,7 @@ class CamerasCell: UITableViewCell {
         let image = UIImageView()
         image.translatesAutoresizingMaskIntoConstraints = false
         image.clipsToBounds = true
-        image.layer.cornerRadius = 10
+        image.layer.cornerRadius = 15
         image.layer.maskedCorners = [.layerMinXMinYCorner,.layerMaxXMinYCorner]
         return image
     }()
@@ -28,7 +28,7 @@ class CamerasCell: UITableViewCell {
         image.image = imageStar
         return image
     }()
-        
+    
     lazy var recLable: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -43,7 +43,7 @@ class CamerasCell: UITableViewCell {
         view.translatesAutoresizingMaskIntoConstraints = false
         view.backgroundColor = .white
         view.clipsToBounds = true
-        view.layer.cornerRadius = 10
+        view.layer.cornerRadius = 15
         view.layer.maskedCorners = [.layerMinXMaxYCorner,.layerMaxXMaxYCorner]
         return view
     }()
@@ -64,7 +64,6 @@ class CamerasCell: UITableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         self.setupViews()
     }
-    
 }
 
 extension CamerasCell {
@@ -73,43 +72,31 @@ extension CamerasCell {
         contentView.backgroundColor = .lightGrayBackground
         
         contentView.addSubview(cameraImage)
+        cameraImage.addSubview(recLable)
+        cameraImage.addSubview(favoriteImage)
+        contentView.addSubview(whiteBottomView)
+        whiteBottomView.addSubview(cameraName)
+        
         NSLayoutConstraint.activate([
             cameraImage.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 20),
-            
-            cameraImage.bottomAnchor.constraint(equalTo: contentView.topAnchor, constant: 0),
-            
             cameraImage.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 30),
-            
             cameraImage.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -30),
-           // cameraImage.heightAnchor.constraint(equalToConstant: 200)
-        ])
-        
-        cameraImage.addSubview(recLable)
-        NSLayoutConstraint.activate([
+            cameraImage.heightAnchor.constraint(equalToConstant: 200),
+            
             recLable.topAnchor.constraint(equalTo: cameraImage.topAnchor, constant: 10),
-            recLable.leftAnchor.constraint(equalTo: cameraImage.leftAnchor, constant: 10)
-        ])
-        
-        cameraImage.addSubview(favoriteImage)
-        NSLayoutConstraint.activate([
+            recLable.leftAnchor.constraint(equalTo: cameraImage.leftAnchor, constant: 10),
+            
             favoriteImage.topAnchor.constraint(equalTo: cameraImage.topAnchor, constant: 10),
             favoriteImage.rightAnchor.constraint(equalTo: cameraImage.rightAnchor, constant: -10),
             favoriteImage.heightAnchor.constraint(equalToConstant: 25),
-            favoriteImage.widthAnchor.constraint(equalToConstant: 25)
-        ])
-        
-        contentView.addSubview(whiteBottomView)
-        NSLayoutConstraint.activate([
+            favoriteImage.widthAnchor.constraint(equalToConstant: 25),
+            
             whiteBottomView.topAnchor.constraint(equalTo: cameraImage.bottomAnchor),
             whiteBottomView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -20),
             whiteBottomView.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 30),
             whiteBottomView.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -30),
-            whiteBottomView.heightAnchor.constraint(equalToConstant: 50)
+            whiteBottomView.heightAnchor.constraint(equalToConstant: 50),
             
-        ])
-        
-        whiteBottomView.addSubview(cameraName)
-        NSLayoutConstraint.activate([
             cameraName.centerYAnchor.constraint(equalTo: whiteBottomView.centerYAnchor),
             cameraName.leftAnchor.constraint(equalTo: whiteBottomView.leftAnchor, constant: 20)
         ])

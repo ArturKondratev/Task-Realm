@@ -9,7 +9,7 @@ import Foundation
 import RealmSwift
 
 class DoorsRealmModel: Object {
-    
+
     @Persisted var name: String
     @Persisted var room: String?
     @Persisted(primaryKey: true) var id: Int

@@ -24,6 +24,7 @@ class MyHomeViewController: UIViewController {
         let camerasButton = UIButton(type: .system)
         camerasButton.translatesAutoresizingMaskIntoConstraints = false
         camerasButton.setTitle("Камеры", for: .normal)
+        camerasButton.tintColor = .black
         camerasButton.backgroundColor = .clear
         camerasButton.addTarget(self, action: #selector(showCameras), for: .touchUpInside)
         return camerasButton
@@ -33,6 +34,7 @@ class MyHomeViewController: UIViewController {
         let doodsButton = UIButton(type: .system)
         doodsButton.translatesAutoresizingMaskIntoConstraints = false
         doodsButton.setTitle("Двери", for: .normal)
+        doodsButton.tintColor = .black
         doodsButton.backgroundColor = .clear
         doodsButton.addTarget(self, action: #selector(showDoors), for: .touchUpInside)
         return doodsButton
@@ -42,7 +44,7 @@ class MyHomeViewController: UIViewController {
         let segment = UISegmentedControl(items: ["", ""])
         segment.selectedSegmentTintColor = .systemBlue
         segment.backgroundColor = .white
-        segment.selectedSegmentIndex = 1
+        segment.selectedSegmentIndex = 0
         segment.isEnabled = false
         segment.translatesAutoresizingMaskIntoConstraints = false
         return segment
@@ -53,7 +55,7 @@ class MyHomeViewController: UIViewController {
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.separatorStyle = .none
         tableView.backgroundColor = .systemBackground
-        tableView.isHidden = true
+        tableView.isHidden = false
         let cameraRefControl: UIRefreshControl = {
             let refControl = UIRefreshControl()
             refControl.attributedTitle = NSAttributedString(string: "Refreshing...")
@@ -99,13 +101,11 @@ class MyHomeViewController: UIViewController {
         doorTableView.register(DoorsImageCell.self, forCellReuseIdentifier: DoorsImageCell.identifier)
         
         if segmentControl.selectedSegmentIndex == 0 {
-            cameraTableView.isHidden = false
             cameraTableView.delegate = self
             cameraTableView.dataSource = self
             cameraTableView.reloadData()
             
         } else {
-            doorTableView.isHidden = false
             doorTableView.delegate = self
             doorTableView.dataSource = self
             doorTableView.reloadData()
@@ -162,43 +162,16 @@ extension MyHomeViewController {
 //MARK: - UITableViewDataSource, UITableViewDelegate
 extension MyHomeViewController: UITableViewDelegate, UITableViewDataSource {
     
-    //    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-    //        switch segmentControl.selectedSegmentIndex {
-    //        case 0:
-    //            let titleName = rooms[indexPath.section].roomName
-    //            let filterCameras = cameras.filter({ $0.room == titleName})
-    //            let camera = filterCameras[indexPath.row]
-    //            print(camera)
-    //
-    //        default:
-    //            let door = doors[indexPath.row]
-    //            print(door)
-    //        }
-    //    }
-    
-    //        func sectionIndexTitles(for tableView: UITableView) -> [String]? {
-    //            return roomsName
-    //        }
-    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         
-        let door = doors[indexPath.section]
         if segmentControl.selectedSegmentIndex == 0 {
             return 290
             
         } else {
-            switch indexPath.row {
-            case 0:
-                guard
-                    let url = door.snapshot, !url.isEmpty else {
-                        return 0
-                    }
-                
-                return 200
-                
-            default:
-                return UITableView.automaticDimension
+            guard doors[indexPath.row].snapshot != nil else { return 70
             }
+            
+            return 290
         }
     }
     
@@ -216,7 +189,7 @@ extension MyHomeViewController: UITableViewDelegate, UITableViewDataSource {
         case 0:
             return rooms.count
         default:
-            return doors.count
+            return 1
         }
     }
     
@@ -227,7 +200,7 @@ extension MyHomeViewController: UITableViewDelegate, UITableViewDataSource {
             let count = currentRoom.cameras.count
             return currentRoom.cameras.isEmpty ? 0 : count
         default:
-            return 2
+            return doors.count
         }
     }
     
@@ -243,25 +216,18 @@ extension MyHomeViewController: UITableViewDelegate, UITableViewDataSource {
             
         } else {
             
-            let door = doors[indexPath.section]
-            switch indexPath.row {
+            let door = doors[indexPath.row]
+            
+            if door.snapshot == nil {
                 
-            case 0:
-                guard
-                    let cell = tableView.dequeueReusableCell(withIdentifier: DoorsImageCell.identifier, for: indexPath) as? DoorsImageCell else { return UITableViewCell() }
-                
-                guard let url = doors[indexPath.section].snapshot else { return UITableViewCell() }
-                cell.configure(url: url, fState: door.favorites)
-                return cell
-                
-            case 1:
-                guard
-                    let cell = tableView.dequeueReusableCell(withIdentifier: DoorsCell.identifier, for: indexPath) as? DoorsCell else { return UITableViewCell() }
+                let cell = doorTableView.dequeueReusableCell(withIdentifier: DoorsCell.identifier, for: indexPath) as! DoorsCell
                 cell.configure(model: door)
                 return cell
                 
-            default:
-                return UITableViewCell()
+            } else {
+                let cell = doorTableView.dequeueReusableCell(withIdentifier: DoorsImageCell.identifier, for: indexPath) as! DoorsImageCell
+                cell.configure(model: door)
+                return cell
             }
         }
     }
@@ -332,13 +298,12 @@ extension MyHomeViewController: UITableViewDelegate, UITableViewDataSource {
                 return homeImage
             }()
             
-            let swipeConfiguration = UISwipeActionsConfiguration(actions: [edit, addFavorite])
+            let swipeConfiguration = UISwipeActionsConfiguration(actions: [addFavorite, edit])
             return swipeConfiguration
         }
     }
     
     //MARK: - Pull-to-refresh
-    
     @objc func refreshData(_ sender: UIRefreshControl) {
         defer { sender.endRefreshing()}
         
@@ -464,28 +429,16 @@ extension MyHomeViewController: UITableViewDelegate, UITableViewDataSource {
                 DispatchQueue.main.async { [self] in
                     self.doors = Array(doors)
                     
-                    let deletionIndexSet = deletions.reduce(into: IndexSet(), { $0.insert($1) })
-                    let insertIndexset = insertions.reduce(into: IndexSet(), { $0.insert($1) })
-                    let modificationIndexSet = modifications.reduce(into: IndexSet(), { $0.insert($1) })
-                    
                     self.doorTableView.beginUpdates()
                     
-                    self.doorTableView.deleteSections(deletionIndexSet, with: .automatic)
-                    self.doorTableView.insertSections(insertIndexset, with: .automatic)
-                    self.doorTableView.reloadSections(modificationIndexSet, with: .automatic)
+                    self.doorTableView.insertRows(at: insertions.map ({ IndexPath(row: $0, section: 0)}), with: .automatic)
+                    self.doorTableView.deleteRows(at: deletions.map({ IndexPath(row: $0, section: 0)}), with: .automatic)
+                    self.doorTableView.reloadRows(at: modifications.map({ IndexPath(row: $0, section: 0)}), with: .automatic)
                     
                     self.doorTableView.endUpdates()
- 
-                    
-//                    self.doorTableView.beginUpdates()
-//
-//                    self.doorTableView.insertRows(at: insertions.map ({ IndexPath(row: $0, section: 0)}), with: .automatic)
-//                    self.doorTableView.deleteRows(at: deletions.map({ IndexPath(row: $0, section: 0)}), with: .automatic)
-//                    self.doorTableView.reloadRows(at: modifications.map({ IndexPath(row: $0, section: 0)}), with: .automatic)
-//
-//                    self.doorTableView.endUpdates()
                 }
             }
         })
     }
 }
+

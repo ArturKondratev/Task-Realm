@@ -17,7 +17,6 @@ class DoorsCell: UITableViewCell {
         view.backgroundColor = .white
         view.clipsToBounds = true
         view.layer.cornerRadius = 10
-        // view.layer.maskedCorners = [.layerMinXMaxYCorner,.layerMaxXMaxYCorner]
         return view
     }()
     
@@ -44,31 +43,26 @@ class DoorsCell: UITableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         self.setupViews()
     }
-    
 }
 
 extension DoorsCell {
     
     func setupViews() {
         contentView.backgroundColor = .lightGrayBackground
-        
         contentView.addSubview(whiteBottomView)
-        NSLayoutConstraint.activate([
-            whiteBottomView.topAnchor.constraint(equalTo: contentView.topAnchor),
-            whiteBottomView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -20),
-            whiteBottomView.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 30),
-            whiteBottomView.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -30),
-            whiteBottomView.heightAnchor.constraint(equalToConstant: 50)
-        ])
-        
         whiteBottomView.addSubview(cameraName)
-        NSLayoutConstraint.activate([
-            cameraName.centerYAnchor.constraint(equalTo: whiteBottomView.centerYAnchor),
-            cameraName.leftAnchor.constraint(equalTo: whiteBottomView.leftAnchor, constant: 20)
-        ])
-        
         whiteBottomView.addSubview(lockView)
+        
         NSLayoutConstraint.activate([
+            
+            whiteBottomView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
+            whiteBottomView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
+            whiteBottomView.heightAnchor.constraint(equalToConstant: 50),
+            whiteBottomView.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 5/6),
+            
+            cameraName.centerYAnchor.constraint(equalTo: whiteBottomView.centerYAnchor),
+            cameraName.leftAnchor.constraint(equalTo: whiteBottomView.leftAnchor, constant: 20),
+            
             lockView.centerYAnchor.constraint(equalTo: whiteBottomView.centerYAnchor),
             lockView.rightAnchor.constraint(equalTo: whiteBottomView.rightAnchor),
             lockView.heightAnchor.constraint(equalToConstant: 50),
@@ -78,9 +72,5 @@ extension DoorsCell {
     
     func configure(model: DoorsRealmModel) {
         self.cameraName.text = model.name
-        
-        guard let url = model.snapshot, !url.isEmpty else { return }
-        whiteBottomView.layer.maskedCorners = [.layerMinXMaxYCorner,.layerMaxXMaxYCorner]
-        
     }
 }

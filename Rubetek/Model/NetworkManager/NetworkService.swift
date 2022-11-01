@@ -39,11 +39,12 @@ final class NetworkService {
     func loadCameras(completion: @escaping ([CamerasRealmModel], [CamerasRealmRoom]) -> Void) {
         
         let url = self.configureUrl(method: .camerasGet, httpMethod: .get)
-        
+        print(url)
         URLSession.shared.dataTask(with: url) { data, _, _ in
             guard
                 let data = data,
                 let results = try? self.decoder.decode(Cameras.self, from: data)
+                    
             else { return }
             
             let realmCameras: [CamerasRealmModel] = results.data.cameras.map { result in
@@ -79,20 +80,20 @@ final class NetworkService {
     
     func loadDoors(completion: @escaping ([DoorsRealmModel]) -> Void) {
         let url = configureUrl(method: .doorsGet, httpMethod: .get)
-        
+        print(url)
         URLSession.shared.dataTask(with: url) { data, _, _ in
             guard
                 let data = data,
                 let results = try? self.decoder.decode(Doors.self, from: data)
             else { return }
             
-            let realmDoors: [DoorsRealmModel] = results.data.map { results in
+            let realmDoors: [DoorsRealmModel] = results.data.map { door in
                 let realmPost = DoorsRealmModel()
-                realmPost.name = results.name
-                realmPost.room = results.room ?? "Some"
-                realmPost.id = results.id
-                realmPost.favorites = results.favorites
-                realmPost.snapshot = results.snapshot
+                realmPost.name = door.name
+                realmPost.room = door.room ?? "Some"
+                realmPost.id = door.id
+                realmPost.favorites = door.favorites
+                realmPost.snapshot = door.snapshot
                 
                 return realmPost
             }

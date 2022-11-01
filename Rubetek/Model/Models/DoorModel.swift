@@ -15,9 +15,11 @@ struct Doors: Codable {
 
 // MARK: - Datum
 struct Door: Codable {
+    
     let name: String
     let room: String?
     let id: Int
     let favorites: Bool
     let snapshot: String?
+    
 }
