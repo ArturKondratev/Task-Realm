@@ -111,46 +111,37 @@ class MyHomeViewController: UIViewController {
             doorTableView.reloadData()
         }
     }
-}
-
-extension MyHomeViewController {
+    
     
     func setupViews() {
         view.addSubview(camerasButton)
+        view.addSubview(doorsButton)
+        view.addSubview(segmentControl)
+        view.addSubview(cameraTableView)
+        view.addSubview(doorTableView)
+        
         NSLayoutConstraint.activate([
             camerasButton.topAnchor.constraint(equalTo: view.topAnchor, constant:  100),
             camerasButton.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 0),
             camerasButton.heightAnchor.constraint(equalToConstant: 50),
-            camerasButton.widthAnchor.constraint(equalToConstant: view.frame.width/2)
-        ])
-        
-        view.addSubview(doorsButton)
-        NSLayoutConstraint.activate([
+            camerasButton.widthAnchor.constraint(equalToConstant: view.frame.width/2),
+            
             doorsButton.topAnchor.constraint(equalTo: view.topAnchor, constant:  100),
             doorsButton.rightAnchor.constraint(equalTo: view.rightAnchor, constant: 0),
             doorsButton.heightAnchor.constraint(equalToConstant: 50),
-            doorsButton.widthAnchor.constraint(equalToConstant: view.frame.width/2)
-        ])
-        
-        view.addSubview(segmentControl)
-        NSLayoutConstraint.activate([
+            doorsButton.widthAnchor.constraint(equalToConstant: view.frame.width/2),
+            
             segmentControl.topAnchor.constraint(equalTo: camerasButton.bottomAnchor, constant: 10),
             segmentControl.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 0),
             segmentControl.rightAnchor.constraint(equalTo: view.rightAnchor, constant: 0),
             segmentControl.heightAnchor.constraint(equalToConstant: 3),
-            segmentControl.widthAnchor.constraint(equalToConstant: view.frame.width)
-        ])
-        
-        view.addSubview(cameraTableView)
-        NSLayoutConstraint.activate([
+            segmentControl.widthAnchor.constraint(equalToConstant: view.frame.width),
+            
             cameraTableView.topAnchor.constraint(equalTo: segmentControl.bottomAnchor, constant: 5),
             cameraTableView.leftAnchor.constraint(equalTo: view.leftAnchor),
             cameraTableView.rightAnchor.constraint(equalTo: view.rightAnchor),
-            cameraTableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
-        ])
-        
-        view.addSubview(doorTableView)
-        NSLayoutConstraint.activate([
+            cameraTableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            
             doorTableView.topAnchor.constraint(equalTo: segmentControl.bottomAnchor, constant: 20),
             doorTableView.leftAnchor.constraint(equalTo: view.leftAnchor),
             doorTableView.rightAnchor.constraint(equalTo: view.rightAnchor),
